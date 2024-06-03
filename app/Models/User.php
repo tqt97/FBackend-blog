@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements FilamentUser
@@ -55,5 +56,10 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel($panel): bool
     {
         return true;
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }
