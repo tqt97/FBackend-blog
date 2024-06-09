@@ -43,7 +43,7 @@ class Post extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, config('filamentblog.tables.prefix') . 'category_' . config('filamentblog.tables.prefix') . 'post');
+        return $this->belongsToMany(Category::class);
     }
 
     public function comments(): HasMany
