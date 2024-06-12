@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Traits\HasBlog;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
+    use HasBlog;
 
     /**
      * The attributes that are mass assignable.
@@ -61,5 +64,10 @@ class User extends Authenticatable implements FilamentUser
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function canComment()
+    {
+        return true;
     }
 }

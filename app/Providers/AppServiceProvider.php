@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Helpers\SEOMeta;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Config\Repository as Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
@@ -22,8 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::preventLazyLoading(! app()->isProduction());
+        // Model::preventLazyLoading(! app()->isProduction());
         // Model::unguard();
+        $this->app->singleton('seometa', function ($app) {
+            return new SEOMeta(new Config($app->config->get('blog.seo.meta')));
+        });
 
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch

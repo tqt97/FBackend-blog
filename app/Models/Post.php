@@ -51,6 +51,11 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function commentsApprove(): HasMany
+    {
+        return $this->hasMany(Comment::class)->whereApproved(true);
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
@@ -58,7 +63,7 @@ class Post extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function seoDetail()
