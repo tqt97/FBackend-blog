@@ -47,7 +47,7 @@ class PostsRelationManager extends RelationManager
                                     ->unique('posts', 'slug', null, 'id')
                                     ->readOnly()
                                     ->characterLimit(255),
-                                TextInput::make('sub_title')
+                                TextInput::make('description')
                                     ->characterLimit(255),
                                 Forms\Components\Select::make('user_id')
                                     ->relationship('user', 'name')
@@ -64,7 +64,7 @@ class PostsRelationManager extends RelationManager
                             ->schema([
                                 // Forms\Components\Fieldset::make('Feature Image')
                                 //     ->schema([
-                                Forms\Components\FileUpload::make('cover_photo_path')
+                                Forms\Components\FileUpload::make('image')
                                     ->label('Cover Photo')
                                     ->directory('/uploads/images/blog-feature-images')
                                     ->hint('Recommended image size 1200 X 628')
@@ -160,7 +160,7 @@ class PostsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('title')
                     ->limit(40)
                     ->description(function (Post $record) {
-                        return Str::limit($record->sub_title);
+                        return Str::limit($record->description);
                     }),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()

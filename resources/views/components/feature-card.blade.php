@@ -22,7 +22,7 @@
                 </div>
             </div>
             <p class="mb-4">
-                {!! Str::limit($post->sub_title) !!}
+                {!! Str::limit($post->description) !!}
             </p>
         </div>
         <div class="flex items-center gap-4">

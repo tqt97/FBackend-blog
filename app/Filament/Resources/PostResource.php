@@ -77,7 +77,7 @@ class PostResource extends Resource
                                     ->unique('posts', 'slug', null, 'id')
                                     ->readOnly()
                                     ->characterLimit(255),
-                                TextInput::make('sub_title')
+                                TextInput::make('description')
                                     ->characterLimit(255),
                                 Forms\Components\Select::make('user_id')
                                     ->relationship('user', 'name')
@@ -94,7 +94,7 @@ class PostResource extends Resource
                             ->schema([
                                 // Forms\Components\Fieldset::make('Feature Image')
                                 //     ->schema([
-                                Forms\Components\FileUpload::make('cover_photo_path')
+                                Forms\Components\FileUpload::make('image')
                                     ->label('Cover Photo')
                                     ->directory('/uploads/images/blog-feature-images')
                                     ->hint('Recommended image size 1200 X 628')
@@ -185,9 +185,10 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')->label('Image')->alignCenter(),
                 Tables\Columns\TextColumn::make('title')
                     ->description(function (Post $record) {
-                        return Str::limit($record->sub_title, 40);
+                        return Str::limit($record->description, 40);
                     })
                     ->searchable()->limit(20)->sortable(),
                 Tables\Columns\TextColumn::make('status')
@@ -195,11 +196,8 @@ class PostResource extends Resource
                     ->color(function ($state) {
                         return $state->getColor();
                     })->alignCenter(),
-                Tables\Columns\ImageColumn::make('cover_photo_path')->label('Image')->alignCenter(),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable()->alignCenter(),
-                Tables\Columns\ImageColumn::make('cover_photo_path'),
+                Tables\Columns\TextColumn::make('user.name')->label('Author')->alignCenter(),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -244,7 +242,7 @@ class PostResource extends Resource
                         ->schema([
                             TextEntry::make('title'),
                             TextEntry::make('slug'),
-                            TextEntry::make('sub_title'),
+                            TextEntry::make('description'),
                         ]),
                     Fieldset::make('Publish Information')
                         ->schema([

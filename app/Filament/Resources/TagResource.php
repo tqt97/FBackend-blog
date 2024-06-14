@@ -45,12 +45,11 @@ class TagResource extends Resource
                             ))
                             ->unique('tags', 'name', null, 'id')
                             ->required()
-                            ->characterLimit(255),
+                            ->characterLimit(50),
                         TextInput::make('slug')
                             ->unique('tags', 'slug', null, 'id')
                             ->readOnly()
-                            ->characterLimit(255)
-                            ->disabled(),
+                            ->characterLimit(50),
                     ]),
             ]);
     }

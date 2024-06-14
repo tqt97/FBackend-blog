@@ -25,35 +25,27 @@ return new class extends Migration
             $table->id()->index();
             $table->string('title');
             $table->string('slug');
-            $table->string('sub_title')->nullable();
+            $table->longText('description')->nullable();
             $table->longText('body');
             $table->enum('status', ['published', 'scheduled', 'pending'])->default('pending');
             $table->dateTime('published_at')->nullable();
             $table->dateTime('scheduled_for')->nullable();
-            $table->string('cover_photo_path');
-            $table->string('photo_alt_text');
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->string('image');
+            $table->string('photo_alt_text')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 
         Schema::create('category_post', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Category::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 
         Schema::create('seo_details', function (Blueprint $table) {
             $table->id()->index();
-            $table->foreignIdFor(Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->json('keywords')->nullable();
             $table->text('description');
@@ -63,9 +55,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id()->index();
             $table->foreignId('user_id');
-            $table->foreignIdFor(Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
             $table->text('comment');
             $table->boolean('approved')->default(false);
             $table->dateTime('approved_at')->nullable();
@@ -81,19 +71,15 @@ return new class extends Migration
 
         Schema::create('tags', function (Blueprint $table) {
             $table->id()->index();
-            $table->string('name', 50)->unique();
-            $table->string('slug', 155)->unique();
+            $table->string('name', 50)->unique()->required();
+            $table->string('slug', 50)->unique()->required();
             $table->timestamps();
         });
 
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Tag::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 

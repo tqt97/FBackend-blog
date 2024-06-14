@@ -21,12 +21,12 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
-        'sub_title',
+        'description',
         'body',
         'status',
         'published_at',
         'scheduled_for',
-        'cover_photo_path',
+        'image',
         'photo_alt_text',
         'user_id',
     ];
@@ -116,6 +116,6 @@ class Post extends Model
 
     protected function getFeaturePhotoAttribute()
     {
-        return asset('storage/' . $this->cover_photo_path);
+        return asset('storage/' . $this->image);
     }
 }

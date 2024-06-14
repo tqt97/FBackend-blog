@@ -12,7 +12,7 @@
                     {{ $post->title }}
                 </h2>
                 <p class="mb-3 line-clamp-3">
-                    {{ Str::limit($post->sub_title, 100) }}
+                    {{ Str::limit($post->description, 100) }}
                 </p>
             </div>
             <div class="flex items-center gap-4">

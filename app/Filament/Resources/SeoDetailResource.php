@@ -156,7 +156,7 @@ class SeoDetailResource extends Resource
                             TextInput::make('slug')
                                 ->maxLength(255),
 
-                            Textarea::make('sub_title')
+                            Textarea::make('description')
                                 ->maxLength(255)
                                 ->columnSpanFull(),
 
@@ -186,7 +186,7 @@ class SeoDetailResource extends Resource
                         ->columnSpanFull(),
                     Forms\Components\Fieldset::make('Feature Image')
                         ->schema([
-                            Forms\Components\FileUpload::make('cover_photo_path')
+                            Forms\Components\FileUpload::make('image')
                                 ->label('Cover Photo')
                                 ->directory('/blog-feature-images')
                                 ->hint('This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628')
