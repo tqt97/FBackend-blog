@@ -19,7 +19,17 @@ class ShareSnippetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-share';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static ?string $navigationGroup = 'Share›';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.share_snippet');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/share_snippet.share_snippet');
+    }
 
     public static function getNavigationBadge(): ?string
     {

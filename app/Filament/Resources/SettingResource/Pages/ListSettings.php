@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\SettingResource\Pages;
+// namespace App\Filament\Resources\SettingResource\Pages;
 
-use App\Filament\Resources\SettingResource;
-use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+// use App\Filament\Resources\SettingResource;
+// use Filament\Actions;
+// use Filament\Resources\Pages\ListRecords;
 
-class ListSettings extends ListRecords
-{
-    protected static string $resource = SettingResource::class;
+// class ListSettings extends ListRecords
+// {
+//     protected static string $resource = SettingResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
-}
+//     protected function getHeaderActions(): array
+//     {
+//         return [
+//             Actions\CreateAction::make(),
+//         ];
+//     }
+// }

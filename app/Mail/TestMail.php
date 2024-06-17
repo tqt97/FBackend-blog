@@ -2,25 +2,25 @@
 
 namespace App\Mail;
 
-use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use App\Exceptions\CanNotSendMail;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class BlogPublished extends Mailable
+class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $mailData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(private Post $post, private string $toEmail = '')
+    public function __construct($mailData)
     {
-        //
+        $this->mailData = $mailData;
     }
 
     /**
@@ -28,13 +28,8 @@ class BlogPublished extends Mailable
      */
     public function envelope(): Envelope
     {
-        if ($this->post->isNotPublished()) {
-            throw CanNotSendMail::postNotPublished();
-        }
-
         return new Envelope(
-            to: $this->toEmail,
-            subject: 'New Purchase Mail'
+            subject: $this->mailData['subject'],
         );
     }
 
@@ -44,8 +39,7 @@ class BlogPublished extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.blog-published',
-            with: ['post' => $this->post]
+            htmlString: $this->mailData['body'],
         );
     }
 

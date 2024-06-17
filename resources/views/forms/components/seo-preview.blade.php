@@ -20,7 +20,7 @@
         border-top-right-radius: 0.5rem;
     }
 
-    .space-x-2 > :not(template) ~ :not(template) {
+    .space-x-2> :not(template)~ :not(template) {
         --tw-space-x-reverse: 0;
         margin-right: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
         margin-left: calc(0.5rem * var(--tw-space-x-reverse));
@@ -106,10 +106,7 @@
     }
 </style>
 
-<x-dynamic-component
-    :component="$getFieldWrapperView()"
-    :field="$field"
->
+<x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
     <div x-data="{ state: $wire.$entangle('{{ $getStatePath() }}') }">
         <div class="text-left">
             <div class="mt-4 text-gray-600 text-sm mb-2">
@@ -132,7 +129,7 @@
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold mb-1">
                         <a href="#" class="text-blue-600 hover:underline">
-                            @if(!empty($this->data['seo_title']))
+                            @if (!empty($this->data['seo_title']))
                                 {{ $this->data['seo_title'] }}
                             @else
                                 SEO Title field
@@ -140,14 +137,14 @@
                         </a>
                     </h3>
                     <p class="text-sm text-green-600">
-                        @if(!empty($this->data['seo_metadata']['og:url']))
+                        @if (!empty($this->data['seo_metadata']['og:url']))
                             {{ $this->data['seo_metadata']['og:url'] }}
                         @else
                             og:url
                         @endif
                     </p>
                     <p class="text-sm text-gray-600 mt-1">
-                        @if(!empty($this->data['seo_metadata']['og:description']))
+                        @if (!empty($this->data['seo_metadata']['og:description']))
                             {{ $this->data['seo_metadata']['og:description'] }}
                         @else
                             og:description

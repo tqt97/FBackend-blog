@@ -25,6 +25,16 @@ class TagResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.tag');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/tag.tag');
+    }
+
     protected static ?int $navigationSort = 2;
 
     public static function getNavigationBadge(): ?string

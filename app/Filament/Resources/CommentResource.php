@@ -21,6 +21,16 @@ class CommentResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.comment');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/comment.comment');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return Comment::count();

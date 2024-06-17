@@ -28,6 +28,16 @@ class SeoDetailResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.seo_detail');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/seo_detail.seo_detail');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return SeoDetail::count();

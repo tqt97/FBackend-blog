@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+// const preset = require('./vendor/filament/filament/tailwind.config.preset')
+
 export default {
+    // presets: [preset],
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",

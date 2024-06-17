@@ -42,6 +42,16 @@ class PostResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.post');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/post.post');
+    }
+
     protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?int $navigationSort = 3;

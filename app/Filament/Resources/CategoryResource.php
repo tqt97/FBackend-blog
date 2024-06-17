@@ -29,6 +29,17 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.category');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/category.category');
+    }
+
+
     public static function getNavigationBadge(): ?string
     {
         return Category::count();

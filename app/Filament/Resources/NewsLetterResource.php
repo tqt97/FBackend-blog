@@ -21,6 +21,16 @@ class NewsLetterResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('admin/navigation.news_letter');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin/news_letter.news_letter');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return NewsLetter::count();
