@@ -2,31 +2,27 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\Post;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Pages\Page;
 use App\Enums\PostStatus;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
 use App\Filament\Forms\PostForm;
-use Filament\Infolists\Infolist;
-use Filament\Resources\Resource;
-use Filament\Pages\SubNavigationPosition;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\Fieldset;
-use Filament\Infolists\Components\TextEntry;
 use App\Filament\Resources\PostResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\Pages\EditPost;
-use App\Filament\Resources\PostResource\Pages\ViewPost;
+use App\Filament\Resources\PostResource\Pages\ManageCategory;
+use App\Filament\Resources\PostResource\Pages\ManageComment;
 use App\Filament\Resources\PostResource\Pages\ManageSeo;
 use App\Filament\Resources\PostResource\Pages\ManageTag;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Filament\Resources\PostResource\Pages\ManageComment;
-use App\Filament\Resources\PostResource\Pages\ManageCategory;
+use App\Filament\Resources\PostResource\Pages\ViewPost;
+use App\Models\Post;
+use Filament\Forms\Form;
+use Filament\Infolists\Components\Fieldset;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
+use Filament\Pages\Page;
+use Filament\Pages\SubNavigationPosition;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class PostResource extends Resource
 {
@@ -121,6 +117,7 @@ class PostResource extends Resource
                 ]),
             ]);
     }
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([

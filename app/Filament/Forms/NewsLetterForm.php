@@ -2,8 +2,8 @@
 
 namespace App\Filament\Forms;
 
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Toggle;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
 
 class NewsLetterForm

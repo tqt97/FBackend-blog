@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\Services\SettingService;
-
 class MailSettingService
 {
     public function __construct(

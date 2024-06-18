@@ -2,16 +2,12 @@
 
 namespace App\Filament\Resources\PostResource\Pages;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Actions;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
 use App\Filament\Forms\SeoForm;
 use App\Filament\Resources\PostResource;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\ManageRelatedRecords;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class ManageSeo extends ManageRelatedRecords
 {
@@ -38,11 +34,11 @@ class ManageSeo extends ManageRelatedRecords
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label(('SEO Title'))
-                ->limit(40)->searchable(),
+                    ->limit(40)->searchable(),
                 Tables\Columns\TextColumn::make('description')->label(('SEO Description'))
-                ->limit(40)->searchable(),
+                    ->limit(40)->searchable(),
                 Tables\Columns\TextColumn::make('keywords')->label(('SEO Keywords'))
-                ->searchable()->badge(),
+                    ->searchable()->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

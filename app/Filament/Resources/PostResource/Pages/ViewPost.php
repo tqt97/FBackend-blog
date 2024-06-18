@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\PostResource\Pages;
 
+use App\Filament\Resources\PostResource;
 use App\Models\Post;
 use Filament\Actions;
 use Filament\Actions\Action;
-use App\Filament\Resources\PostResource;
 use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Contracts\Support\Htmlable;
 

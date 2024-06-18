@@ -2,8 +2,8 @@
 
 namespace App\Filament\Forms\Settings;
 
-use Filament\Forms\Components\TextInput;
 use App\Enums\SocialNetwork;
+use Filament\Forms\Components\TextInput;
 
 class SocialNetworkFieldsForm
 {

@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Enums\PostStatus;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
@@ -56,7 +56,7 @@ class Post extends Model
 
     public function isNotPublished()
     {
-        return !$this->isStatusPublished();
+        return ! $this->isStatusPublished();
     }
 
     public function scopePublished(Builder $query)
@@ -99,6 +99,6 @@ class Post extends Model
 
     protected function getFeaturePhotoAttribute()
     {
-        return asset('storage/' . $this->image);
+        return asset('storage/'.$this->image);
     }
 }

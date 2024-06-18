@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Post;
-use App\Models\NewsLetter;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\NewsLetter;
+use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -22,6 +22,7 @@ class PostController extends Controller
             'posts' => $posts,
         ]);
     }
+
     public function allPosts()
     {
         // SEOMeta::setTitle('All posts | ' . config('app.name'));
@@ -45,17 +46,19 @@ class PostController extends Controller
         $searchedPosts = Post::query()
             ->with(['categories', 'user'])
             ->published()
-            ->whereAny(['title', 'description'], 'like', '%' . $request->get('query') . '%')
+            ->whereAny(['title', 'description'], 'like', '%'.$request->get('query').'%')
             ->paginate(10)->withQueryString();
 
         return view('frontend.posts.search', [
             'posts' => $searchedPosts,
-            'searchMessage' => 'Search result for ' . $request->get('query'),
+            'searchMessage' => 'Search result for '.$request->get('query'),
         ]);
     }
+
     public function show(Post $post)
     {
         $post->with(['categories', 'user', 'tags', 'comments']);
+
         return view('frontend.posts.show', [
             'post' => $post,
         ]);

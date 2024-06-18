@@ -2,8 +2,8 @@
 
 namespace App\Concerns;
 
-use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Post;
 
 trait HasBlog
 {
@@ -15,8 +15,8 @@ trait HasBlog
     public function getAvatarAttribute()
     {
         return $this->profile_photo_path
-            ? asset('storage/' . $this->profile_photo_path) :
-            'https://ui-avatars.com/api/?&background=random&name=' . $this->name;
+            ? asset('storage/'.$this->profile_photo_path) :
+            'https://ui-avatars.com/api/?&background=random&name='.$this->name;
     }
 
     public function posts()

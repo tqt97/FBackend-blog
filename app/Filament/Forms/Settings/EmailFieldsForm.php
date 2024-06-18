@@ -2,11 +2,11 @@
 
 namespace App\Filament\Forms\Settings;
 
+use App\Enums\EmailProvider;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use App\Enums\EmailProvider;
 
 class EmailFieldsForm
 {
@@ -24,11 +24,11 @@ class EmailFieldsForm
                             ->options(function () {
                                 $options = [];
                                 foreach (EmailProvider::options() as $key => $value) {
-                                    if (file_exists(public_path('backend/general-settings/images/email-providers/' . strtolower($value) . '.svg'))) {
-                                        $options[strtolower($value)] = '<div class="flex gap-2">' .
-                                            ' <img src="' . asset('backend/general-settings/images/email-providers/' . strtolower($value) . '.svg') . '"  class="h-5">'
-                                            . $value
-                                            . '</div>';
+                                    if (file_exists(public_path('backend/general-settings/images/email-providers/'.strtolower($value).'.svg'))) {
+                                        $options[strtolower($value)] = '<div class="flex gap-2">'.
+                                            ' <img src="'.asset('backend/general-settings/images/email-providers/'.strtolower($value).'.svg').'"  class="h-5">'
+                                            .$value
+                                            .'</div>';
                                     } else {
                                         $options[strtolower($value)] = $value;
                                     }

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Forms;
 
+use Filament\Forms\Components\Section;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
-use Filament\Forms\Components\Section;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
 
 class TagForm

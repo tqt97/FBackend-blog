@@ -4,14 +4,10 @@ namespace App\Filament\Resources\PostResource\Pages;
 
 use App\Filament\Forms\CategoryForm;
 use App\Filament\Resources\PostResource;
-use Filament\Actions;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ManageCategory extends ManageRelatedRecords
 {

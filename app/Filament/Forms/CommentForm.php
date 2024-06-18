@@ -2,9 +2,9 @@
 
 namespace App\Filament\Forms;
 
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Schmeits\FilamentCharacterCounter\Forms\Components\Textarea;
 
 class CommentForm

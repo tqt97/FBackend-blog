@@ -2,25 +2,25 @@
 
 namespace App\Filament\Pages;
 
-use App\Mail\TestMail;
-use App\Models\Setting;
-use Filament\Forms\Form;
-use Filament\Pages\Page;
-use Filament\Actions\Action;
-use App\Helpers\EmailDataHelper;
-use Filament\Forms\Components\Tabs;
-use Illuminate\Support\Facades\Log;
-use App\Services\MailSettingService;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Notifications\Notification;
-use App\Filament\Forms\Settings\CustomForm;
-use App\Filament\Forms\Settings\SeoFieldsForm;
-use App\Filament\Forms\Settings\EmailFieldsForm;
 use App\Filament\Forms\Settings\AnalyticsFieldsForm;
 use App\Filament\Forms\Settings\ApplicationFieldsForm;
+use App\Filament\Forms\Settings\CustomForm;
+use App\Filament\Forms\Settings\EmailFieldsForm;
+use App\Filament\Forms\Settings\SeoFieldsForm;
 use App\Filament\Forms\Settings\SocialNetworkFieldsForm;
+use App\Helpers\EmailDataHelper;
+use App\Mail\TestMail;
+use App\Models\Setting;
+use App\Services\MailSettingService;
+use Filament\Actions\Action;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Pages\Page;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SettingPage extends Page
 {
@@ -32,22 +32,27 @@ class SettingPage extends Page
     {
         return __('Setting');
     }
+
     public static function getNavigationIcon(): ?string
     {
         return 'heroicon-o-adjustments-horizontal';
     }
+
     public static function getNavigationSort(): ?int
     {
         return 100;
     }
+
     public function getTitle(): string
     {
         return __('Settings');
     }
+
     public static function getNavigationLabel(): string
     {
         return __('Settings');
     }
+
     public ?array $data = [];
 
     public function mount(): void
@@ -108,7 +113,7 @@ class SettingPage extends Page
         if (config('setting.show_custom_tabs')) {
             foreach (config('setting.custom_tabs') as $key => $customTab) {
                 $arrTabs[] = Tab::make($customTab['label'])
-                    ->label(__('' . $customTab['label']))
+                    ->label(__(''.$customTab['label']))
                     ->icon($customTab['icon'])
                     ->schema(CustomForm::get($customTab['fields']))
                     ->columns($customTab['columns'])
@@ -166,7 +171,7 @@ class SettingPage extends Page
             return;
         }
 
-        $this->successNotification(__('test_email_success') . $email);
+        $this->successNotification(__('test_email_success').$email);
     }
 
     private function successNotification(string $title): void
@@ -179,7 +184,7 @@ class SettingPage extends Page
 
     private function errorNotification(string $title, string $body): void
     {
-        Log::error('[EMAIL] ' . $body);
+        Log::error('[EMAIL] '.$body);
 
         Notification::make()
             ->title($title)

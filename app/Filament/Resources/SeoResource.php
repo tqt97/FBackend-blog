@@ -2,18 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Seo;
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
 use App\Filament\Forms\SeoForm;
-use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SeoResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SeoResource\RelationManagers;
-use App\Tables\Columns\JsonColumn;
+use App\Models\Seo;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class SeoResource extends Resource
 {

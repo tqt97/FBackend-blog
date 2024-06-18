@@ -2,16 +2,12 @@
 
 namespace App\Filament\Resources\PostResource\Pages;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Actions;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
 use App\Filament\Forms\TagForm;
 use App\Filament\Resources\PostResource;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\ManageRelatedRecords;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class ManageTag extends ManageRelatedRecords
 {

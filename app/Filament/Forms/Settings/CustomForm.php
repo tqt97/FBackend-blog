@@ -2,12 +2,12 @@
 
 namespace App\Filament\Forms\Settings;
 
+use App\Enums\TypeField;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use App\Enums\TypeField;
 
 class CustomForm
 {

@@ -2,17 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Tag;
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
 use App\Filament\Forms\TagForm;
-use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\TagResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\TagResource\RelationManagers;
+use App\Models\Tag;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class TagResource extends Resource
 {
@@ -49,12 +45,12 @@ class TagResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                ->sortable()
+                    ->sortable()
                     ->searchable(),
                 // Tables\Columns\TextColumn::make('slug')
                 //     ->searchable(),
                 Tables\Columns\TextColumn::make('posts_count')
-                ->sortable()
+                    ->sortable()
                     ->badge()
                     ->counts('posts')
                     ->alignCenter(),

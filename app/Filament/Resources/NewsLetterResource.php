@@ -4,15 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Forms\NewsLetterForm;
 use App\Filament\Resources\NewsLetterResource\Pages;
-use App\Filament\Resources\NewsLetterResource\RelationManagers;
 use App\Models\NewsLetter;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class NewsLetterResource extends Resource
 {
@@ -45,8 +41,6 @@ class NewsLetterResource extends Resource
     }
 
     protected static ?string $recordTitleAttribute = 'email';
-
-
 
     public static function table(Table $table): Table
     {
