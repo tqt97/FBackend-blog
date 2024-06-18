@@ -18,7 +18,30 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-squares-plus';
+
+    protected static ?string $navigationGroup = 'Blog';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('category');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('category');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Category::count();
+    }
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+
 
     public static function form(Form $form): Form
     {
@@ -31,10 +54,12 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('posts_count')
+                    ->sortable()
                     ->badge()
                     ->counts('posts')
                     ->alignCenter(),

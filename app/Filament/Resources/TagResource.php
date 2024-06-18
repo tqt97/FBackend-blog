@@ -2,34 +2,46 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TagResource\Pages;
-use App\Filament\Resources\TagResource\RelationManagers;
 use App\Models\Tag;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Filament\Forms\TagForm;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\TagResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\TagResource\RelationManagers;
 
 class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
+
+    protected static ?string $navigationGroup = 'Blog';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('tag');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('tag');
+    }
+
+    protected static ?int $navigationSort = 2;
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Tag::count();
+    }
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(50),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(50),
-            ]);
+        return $form->schema(TagForm::get());
     }
 
     public static function table(Table $table): Table
@@ -37,9 +49,15 @@ class TagResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('slug')
+                //     ->searchable(),
+                Tables\Columns\TextColumn::make('posts_count')
+                ->sortable()
+                    ->badge()
+                    ->counts('posts')
+                    ->alignCenter(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -54,6 +72,8 @@ class TagResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

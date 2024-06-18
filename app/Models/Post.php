@@ -49,7 +49,7 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function seoDetail()
+    public function seo()
     {
         return $this->hasOne(Seo::class);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Forms\CommentForm;
 use App\Filament\Resources\CommentResource\Pages;
 use App\Filament\Resources\CommentResource\RelationManagers;
 use App\Models\Comment;
@@ -17,34 +18,44 @@ class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+
+    protected static ?string $navigationGroup = 'Blog';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('comment');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('comment');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Comment::count();
+    }
+
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('post_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Textarea::make('comment')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('approved')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('approved_at'),
-            ]);
+        return $form->schema(CommentForm::get());
     }
+
+    protected static ?string $recordTitleAttribute = 'comment';
+
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label(__('author'))
                     ->sortable(),
-                Tables\Columns\TextColumn::make('post_id')
+                Tables\Columns\TextColumn::make('post.title')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('approved')

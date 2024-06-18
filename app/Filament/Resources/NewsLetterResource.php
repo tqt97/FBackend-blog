@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Forms\NewsLetterForm;
 use App\Filament\Resources\NewsLetterResource\Pages;
 use App\Filament\Resources\NewsLetterResource\RelationManagers;
 use App\Models\NewsLetter;
@@ -17,26 +18,42 @@ class NewsLetterResource extends Resource
 {
     protected static ?string $model = NewsLetter::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    protected static ?string $navigationGroup = 'Blog';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('news_letter');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('news_letter');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return NewsLetter::count();
+    }
+
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\Toggle::make('subscribed')
-                    ->required(),
-            ]);
+        return $form->schema(NewsLetterForm::get());
     }
+
+    protected static ?string $recordTitleAttribute = 'email';
+
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('email')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\IconColumn::make('subscribed')
                     ->boolean(),

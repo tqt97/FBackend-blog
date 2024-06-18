@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Seo extends Model
 {
     use HasFactory;
-    
+
     protected function casts(): array
     {
         return [
